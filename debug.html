@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model-Viewer Debug</title>
+    <!-- 1. ONLY the model-viewer script -->
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Debug Test for Kefei.glb</h1>
+
+    <!-- 2. The simplest possible model-viewer tag -->
+    <model-viewer
+      id="avatar-viewer"
+      src="Kefei3.glb"
+      alt="A 3D model"
+      auto-rotate
+      camera-controls
+      style="width: 80vw; height: 80vh; border: 1px solid black"
+    >
+    </model-viewer>
+
+    <!-- 3. Our definitive script, targeting the scene-graph-ready event -->
+    <script>
+      const modelViewer = document.getElementById("avatar-viewer");
+
+      if (!modelViewer) {
+        console.error(
+          "CRITICAL ERROR: Could not find the model-viewer element with ID 'avatar-viewer'. Is the script tag placed after the element in the HTML?"
+        );
+      } else {
+        // The 'scene-graph-ready' event is the correct one to use.
+        modelViewer.addEventListener("scene-graph-ready", () => {
+          console.log("✅ 'scene-graph-ready' event fired in debug.html.");
+
+          const model = modelViewer.model;
+          if (!model || !model.scene) {
+            console.error(
+              "❌ Model or scene is still not available. This points to a problem with the model file itself."
+            );
+            return;
+          }
+
+          console.log("👍 Traversing scene to turn everything red...");
+          const scene = model.scene;
+
+          scene.traverse((node) => {
+            if (node.isMesh) {
+              const materialName = node.material.name || "Untitled";
+              console.log(
+                `- Found mesh: "${node.name}", Material: "${materialName}"`
+              );
+
+              // Forcing the material to be red and opaque.
+              if (node.material) {
+                node.material.color.set(0xff0000); // red
+                node.material.transparent = false;
+                node.material.depthWrite = true;
+                node.material.alphaTest = 0.0; // Disable alpha test just in case
+                node.material.needsUpdate = true;
+              }
+            }
+          });
+
+          console.log("✅ Finished modification.");
+        });
+
+        modelViewer.addEventListener("error", (event) => {
+          console.error("🔥 model-viewer error in debug.html:", event.detail);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kefeis Portfolio</title>
+    
+    <link rel="stylesheet" href="style.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Workbench&display=swap" rel="stylesheet">
+
+    <!-- All required scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./lib/three.module.js",
+          "three/addons/": "./lib/addons/",
+          "@pixiv/three-vrm": "./lib/three-vrm.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+      <!-- The hidden image for the particle silhouette -->
+      <img id="silhouette-image" src="img/girl.png" style="display: none;">
+
+      <!-- Responsive Navigation Bar -->
+      <nav class="top-nav" id="top-navigation">
+        <button class="burger-menu" id="burger-button" aria-label="Menü öffnen/schließen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="#about-section" class="nav-icon" title="Über Mich">Ü</a>
+          <a href="#gallery-section" class="nav-icon" title="Galerie">G</a>
+          <a href="#portfolio-section" class="nav-icon" title="Portfolio">P</a>
+          <a href="#contact-section" class="nav-icon" title="Kontakt">K</a>
+        </div>
+      </nav>
+
+      <!-- All Canvas Elements -->
+      <div class="site-frame"></div>
+      <canvas id="particle-canvas"></canvas>
+      <canvas id="bloom-text-canvas"></canvas>
+      <canvas id="vrm-canvas"></canvas>
+
+      <!-- Main Scrollable Content -->
+      <main class="content">
+        <header></header>
+
+        <section id="about-section">
+          <div class="about-container">
+            <div id="vrm-placeholder" class="about-image"></div>
+            <div class="about-text">
+              <h2>Über Mich</h2>
+              <p>Hallo! Ich bin Kefei, eine Entwicklerin mit einer Leidenschaft für die Verbindung von Code und Design. Von 3D-Modellierung in Blender bis hin zur Entwicklung interaktiver Web-Erlebnisse liebe ich es, digitale Welten zu erschaffen, die sowohl funktional als auch ästhetisch ansprechend sind.</p>
+              <p>Mein Studiengang an der Uni Bremen ist Digitale Medien. Diese Seite ist ein kleiner Einblick in meine Projekte und Lernen Prozess. Viel Spaß beim Entdecken!</p>
+            </div>
+          </div>
+        </section>
+
+          <section id="podcast-section">
+          <div class="podcast-container anim-reveal">
+              <div class="podcast-icon">
+                  <img src="img/1.png" alt="Lemon Season Podcast Cover">
+              </div>
+              <div class="podcast-text">
+                  <h3>Podcast: Lemon Season</h3>
+                  <p>Zusammen mit einer Freundin produziere ich "Lemon Season", einen chinesischen Podcast, 
+                    in dem wir offen und ehrlich über die Herausforderungen und Freuden des Erwachsenwerdens sprechen. Wir teilen persönliche Geschichten, geben Tipps und schaffen einen Raum für authentische Gespräche.</p>
+                  <a href="https://podcasts.apple.com/de/podcast/%E6%9F%A0%E6%AA%AC%E5%AD%A3%E8%8A%82/id1760920364" class="podcast-button" target="_blank">
+                      Auf Apple Podcasts anhören
+                  </a>
+              </div>
+          </div>
+        </section>
+  
+        <section id="gallery-section">
+          <div class="gallery-container">
+            <div class="gallery-item"><img src="img/1.png" alt="Modell 1" /><span>Vorbild</span></div>
+            <div class="gallery-item"><img src="img/2.png" alt="Modell 2" /><span>Episode 17</span></div>
+            <div class="gallery-item"><img src="img/3.png" alt="Modell 3" /><span>Episode 21</span></div>
+            <div class="gallery-item"><img src="img/4.png" alt="Modell 4" /><span>Episode 15</span></div>
+            <div class="gallery-item"><img src="img/7.png" alt="Modell 5" /><span>Episode 20</span></div>
+            <div class="gallery-item"><img src="img/6.png" alt="Modell 6" /><span>Episode 7</span></div>
+            <div class="gallery-item"><img src="img/5.png" alt="Modell 7" /><span>Episode 9</span></div>
+            <div class="gallery-item"><img src="img/8.jpg" alt="Modell 8" /><span>Episode 19</span></div>
+            <div class="gallery-item"><img src="img/9.jpg" alt="Modell 9" /><span>Episode 2</span></div>
+          </div>
+        </section>
+  
+        
+        <section id="portfolio-section">
+          <div class="portfolio-container">
+            <figure class="portfolio-item anim-reveal"><img src="img/kaktus_modellierung.png" alt="Kaktus Modellierung" /><figcaption>Kaktus Modellierung</figcaption></figure>
+            <figure class="portfolio-item-2 anim-reveal"><img src="img/pearl_modellierung.png" alt="Perlenohrring Modellierung" /><figcaption>Modellierung für Das Mädchen mit dem Perlenohrring</figcaption></figure>
+            <figure class="portfolio-item-3 anim-reveal"><img src="img/unreal.png" alt="Unreal Engine Game" /><figcaption>Interaktion des Kaktus-Modells in Unreal Engine</figcaption></figure>
+            <figure class="portfolio-item-tall anim-reveal">
+              <video id="game-video" muted playsinline poster="img/game_preview.png"><source src="video/tile_based_game.mp4" type="video/mp4" />Dein Browser unterstützt das Video-Tag nicht.</video>
+              <button id="replay-button" class="replay-btn" aria-label="Play/Pause Video"></button><figcaption>Tile_Based_Game: Blumen-Jäger</figcaption>
+            </figure>
+            <div class="code-snippet-wrapper anim-reveal"><h3>Code-Ausschnitt (1. Semester, Grundlage der Programmierung)</h3>
+              <pre><code class="language-java">
+                class Crow {...
+      void moveCrow() {
+        crowX += xVelocity;
+        crowY += yVelocity;
+        // fliegt Raven im Fenster hin und her(bezüglich der Größe des ganzen Map)
+        if ( crowX < -width/3-10 || crowX > 3000+10) {
+          xVelocity *= -1;
+        }
+        if ( crowY < -height/3-10 || crowY > height+10) {
+          yVelocity *= -1;
+        }
+        // erneuert Phase
+        subPhase += 1.0/frameRate;
+        if (subPhase > phaseLength) {
+          flyPhase = (flyPhase + 1) % crowImgs.size();
+          subPhase = 0;
+        }
+      }
+    }
+              </code></pre></div>
+          </div>
+        </section>
+  
+        <section id="contact-section">
+          <h2>Kontakt</h2>
+          <p>Sie können mich über die folgenden Plattformen erreichen:</p>
+          <div class="contact-links">
+            <a href="mailto:katharina.kefei729@gmail.com" class="contact-icon" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" /></svg></a>
+            <a href="https://github.com/Kefei729" target="_blank" class="contact-icon" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.085 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.217.694.825.576C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z" /></svg></a>
+          </div>
+        </section>
+      </main>
+
+      <!-- Single, combined JavaScript file -->
+      <script type="module" src="./js/main.js" defer></script>
+  </body>
+</html>
