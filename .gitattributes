@@ -1,3 +1,5 @@
 *.glb filter=lfs diff=lfs merge=lfs -text
 *.vrm filter=lfs diff=lfs merge=lfs -text
 *video/* filter=lfs diff=lfs merge=lfs -text
+*.[[:space:]]glb filter=lfs diff=lfs merge=lfs -text
+*.[[:space:]]vrm filter=lfs diff=lfs merge=lfs -text
