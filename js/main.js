@@ -278,8 +278,7 @@ if (particleCanvas) {
     light.position.set(1.0, 1.0, 1.0).normalize();
     vrmScene.add(light);
     let currentVrm;
-    const modelUrl = "https://github.com/Kefei729/Portfolio/releases/download/V1.0/Avatar_Kefei.vrm";
-    new GLTFLoader().register(p => new VRMLoaderPlugin(p)).load(modelUrl, (gltf) => {
+    new GLTFLoader().register(p => new VRMLoaderPlugin(p)).load(Avatar_Kefei.vrm, (gltf) => {
         currentVrm = gltf.userData.vrm;
         currentVrm.scene.rotation.y = Math.PI;
         vrmScene.add(currentVrm.scene);
