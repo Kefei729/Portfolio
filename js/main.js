@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'podcast-p': 'Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.',
             'podcast-button-text': 'Listen on Apple Podcasts',
              'portfolio-caption-1': 'Cactus Modeling',
-      'portfolio-caption-2': 'Modeling for The Girl with the Pearl Earring',
+            'portfolio-caption-2': 'Modeling for The Girl with the Pearl Earring',
       'portfolio-caption-3': 'Interaction of the Cactus Model in Unreal Engine',
       'portfolio-caption-4': 'Tile-Based Game: Flower Hunter',
       'portfolio-code-title': 'Code Snippet (1st Semester, Fundamentals of Programming)',
