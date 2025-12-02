@@ -55,6 +55,10 @@ body {
         color: var(--frame-color);
     }
 }
+.code-snippet-wrapper pre {
+    white-space: pre-wrap;      /* Preserves formatting but wraps long lines */
+    word-break: break-all;      /* Helps break long words/text without spaces */
+}
 
 /* ======================================= */
 /*    Z-INDEX STACKING ORDER             */
