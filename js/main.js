@@ -24,7 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
             'about-p2': 'Mein Studiengang an der Uni Bremen ist Digitale Medien. Diese Seite ist ein kleiner Einblick in meine Projekte und Lernprozess. Viel Spaß beim Entdecken!',
             'podcast-title': 'Podcast: Lemon Season',
             'podcast-p': 'Zusammen mit einer Freundin produziere ich "Lemon Season", einen chinesischen Podcast, in dem wir offen und ehrlich über die Herausforderungen und Freuden des Erwachsenwerdens sprechen. Wir teilen persönliche Geschichten, geben Tipps und schaffen einen Raum für authentische Gespräche.',
-            'podcast-button-text': 'Auf Apple Podcasts anhören'
+            'podcast-button-text': 'Auf Apple Podcasts anhören',
+             'portfolio-caption-1': 'Kaktus Modellierung',
+      'portfolio-caption-2': 'Modellierung für Das Mädchen mit dem Perlenohrring',
+      'portfolio-caption-3': 'Interaktion des Kaktus-Modells in Unreal Engine',
+      'portfolio-caption-4': 'Tile-Based-Game: Blumen-Jäger',
+      'portfolio-code-title': 'Code-Ausschnitt (1. Semester, Grundlage der Programmierung)',
+      'contact-title': 'Kontakt',
+      'contact-p': 'Sie können mich über die folgenden Plattformen erreichen:'
         },
         en: {
             'about-title': 'About Me',
@@ -32,7 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
             'about-p2': 'I am studying Digital Media at the University of Bremen. This site is a small glimpse into my projects and learning process. Have fun exploring!',
             'podcast-title': 'Podcast: Lemon Season',
             'podcast-p': 'Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.',
-            'podcast-button-text': 'Listen on Apple Podcasts'
+            'podcast-button-text': 'Listen on Apple Podcasts',
+             'portfolio-caption-1': 'Cactus Modeling',
+      'portfolio-caption-2': 'Modeling for The Girl with the Pearl Earring',
+      'portfolio-caption-3': 'Interaction of the Cactus Model in Unreal Engine',
+      'portfolio-caption-4': 'Tile-Based Game: Flower Hunter',
+      'portfolio-code-title': 'Code Snippet (1st Semester, Fundamentals of Programming)',
+      'contact-title': 'Contact',
+      'contact-p': 'You can reach me via the following platforms:'
         }
     };
 
