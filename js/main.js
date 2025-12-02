@@ -17,48 +17,78 @@ document.addEventListener("DOMContentLoaded", () => {
             topNav.classList.toggle('nav-open');
         });
     }
+
+    // =======================================
+    // --- TRANSLATIONS & LANGUAGE SWITCH ---
+    // =======================================
     const translations = {
         de: {
+            // About
             'about-title': 'Über Mich',
             'about-p1': 'Hallo! Ich bin Kefei, eine Entwicklerin mit einer Leidenschaft für die Verbindung von Code und Design. Von 3D-Modellierung in Blender bis hin zur Entwicklung interaktiver Web-Erlebnisse liebe ich es, digitale Welten zu erschaffen, die sowohl funktional als auch ästhetisch ansprechend sind.',
             'about-p2': 'Mein Studiengang an der Uni Bremen ist Digitale Medien. Diese Seite ist ein kleiner Einblick in meine Projekte und Lernprozess. Viel Spaß beim Entdecken!',
+            
+            // Podcast
             'podcast-title': 'Podcast: Lemon Season',
             'podcast-p': 'Zusammen mit einer Freundin produziere ich "Lemon Season", einen chinesischen Podcast, in dem wir offen und ehrlich über die Herausforderungen und Freuden des Erwachsenwerdens sprechen. Wir teilen persönliche Geschichten, geben Tipps und schaffen einen Raum für authentische Gespräche.',
             'podcast-button-text': 'Auf Apple Podcasts anhören',
-             'portfolio-caption-1': 'Kaktus Modellierung',
-      'portfolio-caption-2': 'Modellierung für Das Mädchen mit dem Perlenohrring',
-      'portfolio-caption-3': 'Interaktion des Kaktus-Modells in Unreal Engine',
-      'portfolio-caption-4': 'Tile-Based-Game: Blumen-Jäger',
-      'portfolio-code-title': 'Code-Ausschnitt (1. Semester, Grundlage der Programmierung)',
-      'contact-title': 'Kontakt',
-      'contact-p': 'Sie können mich über die folgenden Plattformen erreichen:'
+            
+            // Portfolio
+            'portfolio-caption-1': 'Kaktus Modellierung',
+            'portfolio-caption-2': 'Modellierung für Das Mädchen mit dem Perlenohrring',
+            'portfolio-caption-3': 'Interaktion des Kaktus-Modells in Unreal Engine',
+            'portfolio-caption-4': 'Tile-Based-Game: Blumen-Jäger',
+            'portfolio-code-title': 'Code-Ausschnitt (1. Semester, Grundlage der Programmierung)',
+            
+            // Contact & Titles
+            'contact-title': 'Kontakt',
+            'contact-p': 'Sie können mich über die folgenden Plattformen erreichen:'
+            // Note: Since you likely use a generic <h2> for section titles, 
+            // ensure you have IDs on your "Gallery" and "Portfolio" headers in HTML if you want to translate them.
+            // Example: <h2 id="gallery-title">Gallery</h2>
         },
         en: {
+            // About
             'about-title': 'About Me',
             'about-p1': 'Hello! I\'m Kefei, a developer with a passion for connecting code and design. From 3D modeling in Blender to developing interactive web experiences, I love creating digital worlds that are both functional and aesthetically pleasing.',
             'about-p2': 'I am studying Digital Media at the University of Bremen. This site is a small glimpse into my projects and learning process. Have fun exploring!',
+            
+            // Podcast
             'podcast-title': 'Podcast: Lemon Season',
             'podcast-p': 'Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.',
             'podcast-button-text': 'Listen on Apple Podcasts',
-             'portfolio-caption-1': 'Cactus Modeling',
+            
+            // Portfolio
+            'portfolio-caption-1': 'Cactus Modeling',
             'portfolio-caption-2': 'Modeling for The Girl with the Pearl Earring',
-      'portfolio-caption-3': 'Interaction of the Cactus Model in Unreal Engine',
-      'portfolio-caption-4': 'Tile-Based Game: Flower Hunter',
-      'portfolio-code-title': 'Code Snippet (1st Semester, Fundamentals of Programming)',
-      'contact-title': 'Contact',
-      'contact-p': 'You can reach me via the following platforms:'
+            'portfolio-caption-3': 'Interaction of the Cactus Model in Unreal Engine',
+            'portfolio-caption-4': 'Tile-Based Game: Flower Hunter',
+            'portfolio-code-title': 'Code Snippet (1st Semester, Fundamentals of Programming)',
+            
+            // Contact & Titles
+            'contact-title': 'Contact',
+            'contact-p': 'You can reach me via the following platforms:'
         }
     };
 
     const langSwitcher = document.getElementById('lang-switcher');
     
+    // Select all elements that need translation
+    // IMPORTANT: Make sure these IDs exist in your HTML!
     const elementsToTranslate = {
         'about-title': document.getElementById('about-title'),
         'about-p1': document.getElementById('about-p1'),
         'about-p2': document.getElementById('about-p2'),
         'podcast-title': document.getElementById('podcast-title'),
         'podcast-p': document.getElementById('podcast-p'),
-        'podcast-button-text': document.getElementById('podcast-button-text')
+        'podcast-button-text': document.getElementById('podcast-button-text'),
+        'portfolio-caption-1': document.getElementById('portfolio-caption-1'),
+        'portfolio-caption-2': document.getElementById('portfolio-caption-2'),
+        'portfolio-caption-3': document.getElementById('portfolio-caption-3'),
+        'portfolio-caption-4': document.getElementById('portfolio-caption-4'),
+        'portfolio-code-title': document.getElementById('portfolio-code-title'),
+        'contact-title': document.getElementById('contact-title'),
+        'contact-p': document.getElementById('contact-p')
     };
 
     let currentLang = 'en';
@@ -66,29 +96,34 @@ document.addEventListener("DOMContentLoaded", () => {
     function switchLanguage() {
         const newLang = currentLang === 'de' ? 'en' : 'de';
         
-        // This targets all the text elements for animation
-        const elementsArray = Object.values(elementsToTranslate);
+        // Filter out any elements that might be missing from HTML (prevents errors)
+        const activeElements = Object.values(elementsToTranslate).filter(el => el !== null);
         
-        gsap.to(elementsArray, {
+        gsap.to(activeElements, {
             duration: 0.3,
             autoAlpha: 0,
             ease: 'power1.in',
             onComplete: () => {
-                // Update the text content after fading out
+                // 1. Update text content
                 for (const key in elementsToTranslate) {
                     if (elementsToTranslate[key]) {
-                        elementsToTranslate[key].textContent = translations[newLang][key];
+                        // Check if translation exists before applying
+                        if (translations[newLang][key]) {
+                            elementsToTranslate[key].textContent = translations[newLang][key];
+                        }
                     }
                 }
                 
-                // Update the button text
+                // 2. Update button and state
                 langSwitcher.textContent = newLang === 'de' ? 'EN' : 'DE';
-                
-                // Update the state
                 currentLang = newLang;
 
-                // Fade the new text back in
-                gsap.to(elementsArray, {
+                // 3. !!! CRITICAL FIX !!! 
+                // Refresh ScrollTrigger because text length changed page height
+                ScrollTrigger.refresh();
+
+                // 4. Fade back in
+                gsap.to(activeElements, {
                     duration: 0.3,
                     autoAlpha: 1,
                     ease: 'power1.out',
@@ -103,237 +138,206 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===============================================
-// --- DYNAMIC PARTICLE SILHOUETTE SYSTEM ---
-// ===============================================
-// ===============================================
-// --- DYNAMIC PARTICLE SILHOUETTE SYSTEM ---
-// ===============================================
-const particleCanvas = document.getElementById('particle-canvas');
-if (particleCanvas) {
-    const ctx = particleCanvas.getContext('2d');
-    const silhouetteImage = document.getElementById('silhouette-image');
+    // --- DYNAMIC PARTICLE SILHOUETTE SYSTEM ---
+    // ===============================================
+    const particleCanvas = document.getElementById('particle-canvas');
+    if (particleCanvas) {
+        const ctx = particleCanvas.getContext('2d');
+        const silhouetteImage = document.getElementById('silhouette-image');
 
-    let particlesArray = [];
-    const numberOfParticles = 1500;
-    const landingSpots = [];
-    let animationFrameId;
+        let particlesArray = [];
+        const numberOfParticles = 1500;
+        const landingSpots = [];
+        let animationFrameId;
 
-    const PIXEL_SCAN_STEP = 5;
-    const MAX_PARTICLE_SIZE = 14; 
-    
-    let silhouetteProgress = 0;
-
-    const mouse = { x: null, y: null, radius: 100 };
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-
-    class Particle {
-        constructor() {
-            // Startposition
-            this.x = Math.random() * particleCanvas.width;
-            this.y = Math.random() * particleCanvas.height;
-
-            // *** NEU: Permanente Speicher für die natürliche Schwebeposition ***
-            // Dies ist das "Gedächtnis" des Partikels.
-            this.naturalX = this.x;
-            this.naturalY = this.y;
-            
-            // Zielposition für die Silhouette
-            this.targetX = 0;
-            this.targetY = 0;
-
-            // Geschwindigkeit und Größe (Ihre Werte)
-            this.speedX = Math.random() * 0.4 - 0.2;
-            this.speedY = Math.random() * 0.5 + 0.1;
-            this.baseSize = Math.random() * 4+ 1;
-            this.size = this.baseSize;
-
-            this.color = this.getRandomColor();
-            this.angle = Math.random() * Math.PI * 2;
-            this.spin = Math.random() * 0.04 - 0.02;
-            
-            this.isSilhouetteParticle = false; 
-        }
-
-        setTarget(target) { 
-            this.targetX = target.x; 
-            this.targetY = target.y; 
-            this.isSilhouetteParticle = true;
-        }
-
-        getRandomColor() { const colors = ['#0378129b', '#a6d76a', '#a0c134', '#c0e7a6']; return colors[Math.floor(Math.random() * colors.length)]; }
+        const PIXEL_SCAN_STEP = 5;
+        const MAX_PARTICLE_SIZE = 14; 
         
-        update() {
-            // *** KERN-ÄNDERUNG: Die natürliche Schwebe-Animation läuft IMMER im Hintergrund ***
-            this.naturalX += this.speedX;
-            this.naturalY += this.speedY;
-            this.angle += this.spin;
+        let silhouetteProgress = 0;
 
-            // Wenn das Blatt unten aus dem Bild fällt, erscheint es oben wieder.
-            if (this.naturalY > particleCanvas.height + this.size) {
-                this.naturalY = 0 - this.size;
-                this.naturalX = Math.random() * particleCanvas.width;
-            }
+        const mouse = { x: null, y: null, radius: 100 };
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
 
-            // Jetzt wird die TATSÄCHLICHE, gerenderte Position (this.x, this.y) berechnet.
-            if (this.isSilhouetteParticle) {
-                // Für "Silhouette-Blätter": Interpoliere zwischen der Schwebeposition und dem Ziel.
-                this.x = gsap.utils.interpolate(this.naturalX, this.targetX, silhouetteProgress);
-                this.y = gsap.utils.interpolate(this.naturalY, this.targetY, silhouetteProgress);
-                
-               this.size = (silhouetteProgress * (MAX_PARTICLE_SIZE - this.baseSize))*0.5;
-            } else {
-                // Für "Hintergrund-Blätter": Die Position ist IMMER die Schwebeposition.
-                this.x = this.naturalX;
-                this.y = this.naturalY;
+        class Particle {
+            constructor() {
+                this.x = Math.random() * particleCanvas.width;
+                this.y = Math.random() * particleCanvas.height;
+                this.naturalX = this.x;
+                this.naturalY = this.y;
+                this.targetX = 0;
+                this.targetY = 0;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.5 + 0.1;
+                this.baseSize = Math.random() * 4+ 1;
                 this.size = this.baseSize;
+                this.color = this.getRandomColor();
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = Math.random() * 0.04 - 0.02;
+                this.isSilhouetteParticle = false; 
             }
 
-            // Maus-Interaktion
-            if (!this.isSilhouetteParticle || silhouetteProgress < 0.9) {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    // Wichtig: Die Maus beeinflusst die natürliche Position, damit der Effekt permanent ist.
-                    this.naturalX -= dx / 15;
-                    this.naturalY -= dy / 15;
+            setTarget(target) { 
+                this.targetX = target.x; 
+                this.targetY = target.y; 
+                this.isSilhouetteParticle = true;
+            }
+
+            getRandomColor() { const colors = ['#0378129b', '#a6d76a', '#a0c134', '#c0e7a6']; return colors[Math.floor(Math.random() * colors.length)]; }
+            
+            update() {
+                this.naturalX += this.speedX;
+                this.naturalY += this.speedY;
+                this.angle += this.spin;
+
+                if (this.naturalY > particleCanvas.height + this.size) {
+                    this.naturalY = 0 - this.size;
+                    this.naturalX = Math.random() * particleCanvas.width;
+                }
+
+                if (this.isSilhouetteParticle) {
+                    this.x = gsap.utils.interpolate(this.naturalX, this.targetX, silhouetteProgress);
+                    this.y = gsap.utils.interpolate(this.naturalY, this.targetY, silhouetteProgress);
+                    this.size = (silhouetteProgress * (MAX_PARTICLE_SIZE - this.baseSize))*0.5;
+                } else {
+                    this.x = this.naturalX;
+                    this.y = this.naturalY;
+                    this.size = this.baseSize;
+                }
+
+                if (!this.isSilhouetteParticle || silhouetteProgress < 0.9) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        this.naturalX -= dx / 15;
+                        this.naturalY -= dy / 15;
+                    }
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = this.color;
+                const leafWidth = this.size;
+                const leafHeight = this.size * 2.5;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(leafWidth, -leafHeight / 2, leafWidth / 2, -leafHeight * 0.8, 0, -leafHeight);
+                ctx.bezierCurveTo(-leafWidth / 2, -leafHeight * 0.8, -leafWidth, -leafHeight / 2, 0, 0);
+                ctx.closePath();
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -leafHeight);
+                ctx.strokeStyle = '#ddeab6';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                const stemLength = this.size * 0.7;
+                ctx.lineTo(0, stemLength);
+                ctx.strokeStyle = '#3e6534';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+
+        function getLandingSpotsFromImage(image) {
+            landingSpots.length = 0;
+            const scale = 0.72;
+            const imgWidth = particleCanvas.width * scale;
+            const imgHeight = imgWidth * (image.height / image.width);
+            const startX = (particleCanvas.width - imgWidth) / 2;
+            const startY = particleCanvas.height - imgHeight - 20;
+
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = imgWidth;
+            tempCanvas.height = imgHeight;
+            tempCtx.drawImage(image, 0, 160, imgWidth, imgHeight);
+            
+            const imageData = tempCtx.getImageData(0, 0, imgWidth, imgHeight);
+            for (let y = 0; y < imageData.height; y += PIXEL_SCAN_STEP) {
+                for (let x = 0; x < imageData.width; x += PIXEL_SCAN_STEP) {
+                    if (imageData.data[(y * imageData.width + x) * 4 + 3] > 128) {
+                        landingSpots.push({ x: startX + x, y: startY + y });
+                    }
                 }
             }
         }
-        
-        draw() {
-            ctx.save();
-            // Wir zeichnen an der finalen Position (this.x, this.y)
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.angle);
-            ctx.fillStyle = this.color;
-            const leafWidth = this.size;
-            const leafHeight = this.size * 2.5;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.bezierCurveTo(leafWidth, -leafHeight / 2, leafWidth / 2, -leafHeight * 0.8, 0, -leafHeight);
-            ctx.bezierCurveTo(-leafWidth / 2, -leafHeight * 0.8, -leafWidth, -leafHeight / 2, 0, 0);
-            ctx.closePath();
-            ctx.fill();
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(0, -leafHeight);
-            ctx.strokeStyle = '#ddeab6';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            const stemLength = this.size * 0.7;
-            ctx.lineTo(0, stemLength);
-            ctx.strokeStyle = '#3e6534';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            ctx.restore();
-        }
-    }
 
-    // Ihre angepasste Funktion
-    function getLandingSpotsFromImage(image) {
-        landingSpots.length = 0;
-        const scale = 0.72;
-        const imgWidth = particleCanvas.width * scale;
-        const imgHeight = imgWidth * (image.height / image.width);
-        const startX = (particleCanvas.width - imgWidth) / 2;
-        const startY = particleCanvas.height - imgHeight - 20;
+        function initParticles() {
+            particlesArray = [];
+            landingSpots.sort(() => Math.random() - 0.5);
+            const silhouetteParticleCount = landingSpots.length;
 
-        const tempCanvas = document.createElement('canvas');
-        const tempCtx = tempCanvas.getContext('2d');
-        tempCanvas.width = imgWidth;
-        tempCanvas.height = imgHeight;
-        // Wichtig: Der dritte Parameter ist sx (source x), der vierte sy (source y)
-        // tempCtx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-        // Ihre Version `drawImage(image, 0, 160, imgWidth, imgHeight)` versucht, einen Bereich aus dem Originalbild zu verwenden, was vielleicht nicht das ist, was Sie wollen.
-        // Die normale Version ist:
-        tempCtx.drawImage(image, 0, 160, imgWidth, imgHeight);
-        // Wenn Sie das Bild wirklich vertikal verschieben wollen, müssten Sie den Ziel-Y-Wert anpassen,
-        // oder sicherstellen, dass die Quell-Dimensionen stimmen. Ich belasse es bei der Standard-Implementierung, da diese am stabilsten ist.
-        
-        const imageData = tempCtx.getImageData(0, 0, imgWidth, imgHeight);
-        for (let y = 0; y < imageData.height; y += PIXEL_SCAN_STEP) {
-            for (let x = 0; x < imageData.width; x += PIXEL_SCAN_STEP) {
-                if (imageData.data[(y * imageData.width + x) * 4 + 3] > 128) {
-                    landingSpots.push({ x: startX + x, y: startY + y });
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = new Particle();
+                if (i < silhouetteParticleCount) {
+                    const target = landingSpots[i];
+                    if(target) particle.setTarget(target);
                 }
+                particlesArray.push(particle);
             }
         }
-    }
 
-    function initParticles() {
-        particlesArray = [];
-        landingSpots.sort(() => Math.random() - 0.5);
-        const silhouetteParticleCount = landingSpots.length;
-
-        for (let i = 0; i < numberOfParticles; i++) {
-            const particle = new Particle();
-            if (i < silhouetteParticleCount) {
-                const target = landingSpots[i];
-                if(target) particle.setTarget(target);
+        function animateParticles() {
+            ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            particlesArray.forEach(p => { p.update(); p.draw(); });
+            animationFrameId = requestAnimationFrame(animateParticles);
+        }
+        
+        function reinitializeParticleSystem() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            particleCanvas.width = window.innerWidth;
+            particleCanvas.height = window.innerHeight;
+            getLandingSpotsFromImage(silhouetteImage);
+            if (landingSpots.length > 0) {
+                initParticles();
+                animateParticles();
+            } else {
+                initParticles(); 
+                animateParticles();
             }
-            particlesArray.push(particle);
         }
-    }
 
-    function animateParticles() {
-        ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-        particlesArray.forEach(p => { p.update(); p.draw(); });
-        animationFrameId = requestAnimationFrame(animateParticles);
-    }
-    
-    function reinitializeParticleSystem() {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        particleCanvas.width = window.innerWidth;
-        particleCanvas.height = window.innerHeight;
-        getLandingSpotsFromImage(silhouetteImage);
-        if (landingSpots.length > 0) {
-            initParticles();
-            animateParticles();
-        } else {
-            // Fangen Sie den Fall ab, dass keine Punkte gefunden wurden
-            console.warn("Keine Landepunkte für die Silhouette gefunden. Überprüfen Sie das Bild oder die `getLandingSpotsFromImage` Funktion.");
-            // Initialisieren Sie trotzdem Partikel, damit der Hintergrund nicht leer ist.
-            initParticles(); 
-            animateParticles();
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
         }
-    }
 
-    function debounce(func, delay) {
-        let timeout;
-        return function(...args) {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), delay);
+        ScrollTrigger.create({
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.5,
+            onUpdate: (self) => {
+                const globalProgress = self.progress;
+                const formationStartThreshold = 0.8;
+                silhouetteProgress = gsap.utils.mapRange(formationStartThreshold, 1, 0, 1, globalProgress);
+            }
+        });
+
+        silhouetteImage.onload = () => {
+            reinitializeParticleSystem();
+            window.addEventListener('resize', debounce(reinitializeParticleSystem, 250));
         };
-    }
 
-    ScrollTrigger.create({
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.5,
-        onUpdate: (self) => {
-            const globalProgress = self.progress;
-            const formationStartThreshold = 0.8;
-            silhouetteProgress = gsap.utils.mapRange(formationStartThreshold, 1, 0, 1, globalProgress);
+        if (silhouetteImage.complete && silhouetteImage.naturalWidth !== 0) {
+            silhouetteImage.onload();
         }
-    });
-
-    silhouetteImage.onload = () => {
-        reinitializeParticleSystem();
-        window.addEventListener('resize', debounce(reinitializeParticleSystem, 250));
-    };
-
-    if (silhouetteImage.complete && silhouetteImage.naturalWidth !== 0) {
-        silhouetteImage.onload();
     }
-}
+
     // ==================================================
     // --- ORIGINAL Three.js & GSAP LOGIC ---
     // ==================================================
@@ -385,11 +389,15 @@ if (particleCanvas) {
         });
     }
     
+    // ==========================================
+    // --- HTML2CANVAS PARTICLE EXPLOSION ---
+    // ==========================================
     gsap.utils.toArray(".gallery-item").forEach(item => {
         imagesLoaded(item.querySelector('img'), () => {
             html2canvas(item, { backgroundColor: null, useCORS: true }).then(canvas => {
                 const width = canvas.width, height = canvas.height, ctx = canvas.getContext("2d"), imageData = ctx.getImageData(0, 0, width, height), particleCanvases = [], dataList = [];
-                gsap.set(item, { opacity: 0 });
+                gsap.set(item.querySelector('img'), { opacity: 0 }); 
+                gsap.set(item, { background: 'transparent', boxShadow: 'none', border: 'none' });
                 for (let i = 0; i < 60; i++) dataList.push(ctx.createImageData(width, height));
                 for (let x = 0; x < width; x++) {
                     for (let y = 0; y < height; y++) {
@@ -406,10 +414,21 @@ if (particleCanvas) {
                     let pCanvas = canvas.cloneNode();
                     pCanvas.getContext("2d").putImageData(data, 0, 0);
                     pCanvas.className = "capture-canvas";
-                    gsap.set(pCanvas, { position: 'absolute', top: item.offsetTop, left: item.offsetLeft, width: item.clientWidth, height: item.clientHeight });
+                    
+                    // NOTE: Position is relative to parentElement. 
+                    // Make sure .gallery-item or .gallery-container has position: relative in CSS!
+                    gsap.set(pCanvas, { 
+                        position: 'absolute', 
+                        top: item.offsetTop, 
+                        left: item.offsetLeft, 
+                        width: item.clientWidth, 
+                        height: item.clientHeight 
+                    });
                     item.parentElement.appendChild(pCanvas);
                     particleCanvases.push(pCanvas);
                 });
+                
+                // The particle explosion animation
                 const tl = gsap.timeline({ scrollTrigger: { trigger: item, scrub: 0.7, start: "top 80%", end: "bottom 50%" } });
                 tl.from(particleCanvases, { x: () => gsap.utils.random(-350, 350), y: () => gsap.utils.random(-250, 250), rotation: () => gsap.utils.random(-90, 90), opacity: 0, stagger: { each: 0.02, from: "random" } });
             });
@@ -446,14 +465,13 @@ if (particleCanvas) {
     // Combined Event Listeners
     window.addEventListener("scroll", handleResizeAndScroll);
     window.addEventListener("resize", () => {
-        // Main resize handler
         handleResizeAndScroll();
+        // Recalculate ScrollTrigger on resize too!
+        ScrollTrigger.refresh();
 
-        // Particle system re-init (from particle code)
         if (particleCanvas && silhouetteImage) {
             particleCanvas.width = window.innerWidth;
             particleCanvas.height = window.innerHeight;
-            // The particle's resize logic will be called internally when the main resize happens
         }
     }); 
     

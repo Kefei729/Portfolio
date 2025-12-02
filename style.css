@@ -75,7 +75,7 @@ body {
     background-color: var(--bg-color); 
 }
 #bloom-text-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2; pointer-events: none; }
-main.content { position: relative; z-index: 3; }
+main.content { position: relative; z-index: 3;}
 #vrm-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 4; pointer-events: none; }
 .site-frame { position: fixed; top: 5px; left: 5px; right: 5px; bottom: 5px; border: 8px solid var(--frame-color); border-radius: 20px; z-index: 5; pointer-events: none; }
 
@@ -108,7 +108,7 @@ main.content { position: relative; z-index: 3; }
 /* ================================== */
 
 section { width: 100%; max-width: 1000px; margin: 0 auto 150px auto; padding: 40px; text-align: center; }
-h2 { font-family: "Workbench", sans-serif; font-size: 3rem; margin-bottom: 80px; letter-spacing: 0.2em; }
+h2 { font-family: "Workbench", sans-serif; font-size: 3rem; margin-bottom: 80px; letter-spacing: 0.2em;  word-break: break-word; text-align: center;}
 h3 { font-size: 1.8rem; margin-bottom: 20px; }
 header { height: 100vh; margin-bottom: 100px; }
 #about-section, .podcast-container { background-color: rgba(215, 225, 191, 0.6); backdrop-filter: blur(6px); border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px var(--shadow-color); }
@@ -121,7 +121,12 @@ header { height: 100vh; margin-bottom: 100px; }
 .gallery-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
 .portfolio-container { display: flex; flex-direction: column; align-items: center; gap: 80px; }
 .anim-reveal { transition: clip-path 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); clip-path: inset(var(--inset-y, 25%) var(--inset-x, 25%) round 15px); box-shadow: 0 10px 40px var(--shadow-color); border-radius: 15px; }
-.gallery-item { width: 250px; height: 250px; position: relative; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow-color); }
+.capture-canvas {
+    position: absolute;
+    pointer-events: none; /* Allows mouse to click/hover the item underneath */
+    z-index: 4;
+}
+.gallery-item { width: 250px; height: 250px; position: relative; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow-color); z-index:20; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
 .gallery-item span { position: absolute; bottom: 0; left: 0; width: 100%; padding: 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; text-align: center; font-size: 1.1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.4s ease; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; z-index: 3; }
 .gallery-item:hover { transform: scale(1.05); z-index: 10; }
@@ -146,11 +151,66 @@ header { height: 100vh; margin-bottom: 100px; }
 .replay-btn:active { transform: translate(-50%, -50%) scale(0.95); }
 #portfolio-section figure figcaption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); color: white; text-align: center; font-size: 1rem; opacity: 0; transition: opacity 0.3s ease; z-index: 10; }
 #portfolio-section figure:hover figcaption { opacity: 1; }
-#contact-section p { font-size: 1.2rem; margin-bottom: 40px; }
-.contact-links { display: flex; justify-content: center; gap: 30px; }
-.contact-icon { display: block; width: 60px; height: 60px; background-color: var(--frame-color); border-radius: 50%; padding: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.contact-icon:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--shadow-color); }
-.contact-icon svg { width: 100%; height: 100%; fill: var(--text-dark-green); }
+
+/* ================================== */
+/*   UPDATED CONTACT SECTION          */
+/* ================================== */
+
+#contact-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    width: 100%;             
+    max-width: 1000px;
+    margin: 0 auto;          /* Centers the section container */
+    padding-bottom: 120px;   /* Added padding to prevent icons from being cut off */
+    position: relative;
+    z-index: 10;
+}
+
+#contact-section p {
+    text-align: center;      /* Forces text to be centered */
+    width: 100%;
+    max-width: 600px;        /* Keeps text line length readable */
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    padding: 0 20px;         /* Prevents touching edges on mobile */
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center; /* Centers the icons */
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.contact-icon { 
+    display: inline-flex; 
+    width: 60px; 
+    height: 60px; 
+    background-color: var(--frame-color); 
+    border-radius: 50%; 
+    padding: 12px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.contact-icon:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px var(--shadow-color); 
+}
+.contact-icon svg { 
+    width: 100%; 
+    height: 100%; 
+    fill: var(--text-dark-green); 
+}
+
+/* Updated shared styles (removed #contact-section from here to avoid conflicts) */
+#portfolio-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .capture-canvas {
     position: absolute;
