@@ -17,6 +17,44 @@ body {
     color: var(--text-dark-green);
     overflow-x: hidden;
 }
+/* --- Language Switcher Styles --- */
+
+/* Basic style for the button (mobile first) */
+.lang-switcher {
+  /* Inherits most styles from .nav-icon */
+  border: none;
+  background: linear-gradient(45deg, #588157, var(--text-dark-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  cursor: pointer;
+  padding: 5px; /* Consistent padding for mobile dropdown */
+  width: 100%; /* Make it full width inside dropdown */
+  text-align: center;
+}
+
+/* Desktop styles (inside your existing media query) */
+@media (min-width: 768px) {
+    .lang-switcher {
+        /* Override some inherited styles for desktop */
+        color: var(--text-dark-green); /* Make it solid color */
+        background: none; /* Remove the gradient text effect */
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        border: 2px solid var(--text-dark-green); /* Give it a border */
+        font-weight: bold;
+        transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        padding: 0; /* Reset padding for consistent size */
+        width: 40px; /* Same as other icons */
+        height: 40px; /* Same as other icons */
+    }
+
+    .lang-switcher:hover {
+        transform: scale(1.15); /* Keep the hover effect */
+        background-color: var(--text-dark-green);
+        color: var(--frame-color);
+    }
+}
 
 /* ======================================= */
 /*    Z-INDEX STACKING ORDER             */

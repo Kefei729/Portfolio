@@ -17,6 +17,76 @@ document.addEventListener("DOMContentLoaded", () => {
             topNav.classList.toggle('nav-open');
         });
     }
+    const translations = {
+        de: {
+            'about-title': 'Über Mich',
+            'about-p1': 'Hallo! Ich bin Kefei, eine Entwicklerin mit einer Leidenschaft für die Verbindung von Code und Design. Von 3D-Modellierung in Blender bis hin zur Entwicklung interaktiver Web-Erlebnisse liebe ich es, digitale Welten zu erschaffen, die sowohl funktional als auch ästhetisch ansprechend sind.',
+            'about-p2': 'Mein Studiengang an der Uni Bremen ist Digitale Medien. Diese Seite ist ein kleiner Einblick in meine Projekte und Lernprozess. Viel Spaß beim Entdecken!',
+            'podcast-title': 'Podcast: Lemon Season',
+            'podcast-p': 'Zusammen mit einer Freundin produziere ich "Lemon Season", einen chinesischen Podcast, in dem wir offen und ehrlich über die Herausforderungen und Freuden des Erwachsenwerdens sprechen. Wir teilen persönliche Geschichten, geben Tipps und schaffen einen Raum für authentische Gespräche.',
+            'podcast-button-text': 'Auf Apple Podcasts anhören'
+        },
+        en: {
+            'about-title': 'About Me',
+            'about-p1': 'Hello! I\'m Kefei, a developer with a passion for connecting code and design. From 3D modeling in Blender to developing interactive web experiences, I love creating digital worlds that are both functional and aesthetically pleasing.',
+            'about-p2': 'I am studying Digital Media at the University of Bremen. This site is a small glimpse into my projects and learning process. Have fun exploring!',
+            'podcast-title': 'Podcast: Lemon Season',
+            'podcast-p': 'Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.',
+            'podcast-button-text': 'Listen on Apple Podcasts'
+        }
+    };
+
+    const langSwitcher = document.getElementById('lang-switcher');
+    
+    const elementsToTranslate = {
+        'about-title': document.getElementById('about-title'),
+        'about-p1': document.getElementById('about-p1'),
+        'about-p2': document.getElementById('about-p2'),
+        'podcast-title': document.getElementById('podcast-title'),
+        'podcast-p': document.getElementById('podcast-p'),
+        'podcast-button-text': document.getElementById('podcast-button-text')
+    };
+
+    let currentLang = 'en';
+
+    function switchLanguage() {
+        const newLang = currentLang === 'de' ? 'en' : 'de';
+        
+        // This targets all the text elements for animation
+        const elementsArray = Object.values(elementsToTranslate);
+        
+        gsap.to(elementsArray, {
+            duration: 0.3,
+            autoAlpha: 0,
+            ease: 'power1.in',
+            onComplete: () => {
+                // Update the text content after fading out
+                for (const key in elementsToTranslate) {
+                    if (elementsToTranslate[key]) {
+                        elementsToTranslate[key].textContent = translations[newLang][key];
+                    }
+                }
+                
+                // Update the button text
+                langSwitcher.textContent = newLang === 'de' ? 'EN' : 'DE';
+                
+                // Update the state
+                currentLang = newLang;
+
+                // Fade the new text back in
+                gsap.to(elementsArray, {
+                    duration: 0.3,
+                    autoAlpha: 1,
+                    ease: 'power1.out',
+                    delay: 0.1
+                });
+            }
+        });
+    }
+
+    if (langSwitcher) {
+        langSwitcher.addEventListener('click', switchLanguage);
+    }
 
     // ===============================================
 // --- DYNAMIC PARTICLE SILHOUETTE SYSTEM ---
