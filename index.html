@@ -101,33 +101,114 @@
         </div>
     </section>
 
-    <!-- SECTION 4: PORTFOLIO -->
+   <!-- SECTION 4: PORTFOLIO -->
     <section id="portfolio-section">
-        <figure class="portfolio-item anim-reveal">
-            <img src="img/kaktus_modellierung.png" alt="Cactus Modeling" />
-            <figcaption id="portfolio-caption-1">Cactus Modeling</figcaption>
-        </figure>
+        
+        <!-- PROJECT 1: AR Poetry (Newest) -->
+        <!-- Note: Replace href="#" with your detailed page link if you have one, e.g., projects/ar-poetry.html -->
+        <a href="projects/xr.html" class="portfolio-card anim-reveal">
+            <!-- Left: Image/Video Container -->
+            <div class="portfolio-img-container">
+                <img src="img/XR.png" alt="AR Poetry App Interface">
+            </div>
+            
+            <!-- Right: Text Content -->
+            <div class="portfolio-text">
+                <h3>AR Poetry App + VR Interaction</h3>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unity</span>
+                    <span class="tech-tag">Lightship SDK</span>
+                    <span class="tech-tag">Unreal Engine 5</span>
+                    <span class="tech-tag">Figma</span>
+                </div>
 
-        <figure class="portfolio-item-2 anim-reveal">
-            <img src="img/pearl_modellierung.png" alt="Pearl Earring Modeling" />
-            <figcaption id="portfolio-caption-2">Modeling for The Girl with the Pearl Earring</figcaption>
-        </figure>
+                <p>
+                    Co-developed an AR app using Lightship SDK to retrieve poetry based on real-world object detection. 
+                    I also created an interactive VR landscape in Unreal 5 .
+                </p>
+                
+                <div class="view-project-link">View Project &rarr;</div>
+            </div>
+        </a>
 
-        <figure class="portfolio-item-3 anim-reveal">
-            <img src="img/unreal.png" alt="Unreal Engine Game" />
-            <figcaption id="portfolio-caption-3">Interaction of the Cactus Model in Unreal Engine</figcaption>
-        </figure>
+        <!-- PROJECT 2: Portfolio Website -->
+        <!-- Note: This links to the current site, maybe link to GitHub repo? -->
+        <a href="https://github.com/Kefei729/Portfolio" target="_blank" class="portfolio-card anim-reveal">
+            <div class="portfolio-img-container">
+                <!-- Using the girl illustration or a screenshot of the site -->
+                <img src="img/portfolio.png" alt="Portfolio Website Screenshot">
+            </div>
+            
+            <div class="portfolio-text">
+                <h3>Portfolio Website</h3>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML / CSS</span>
+                </div>
 
-        <figure class="portfolio-item-tall anim-reveal">
-            <video id="game-video" muted playsinline poster="img/game_preview.png">
-                <source src="video/tile_based_game.mp4" type="video/mp4" />
-            </video>
-            <button id="replay-button" class="replay-btn" aria-label="Play/Pause Video"></button>
-            <figcaption id="portfolio-caption-4">Tile-Based Game: Flower Hunter</figcaption>
-        </figure>
+                <p>
+                    Designed and developed this personal portfolio to showcase projects and skills. 
+                    Featured a custom Three.js particle system where leaves form a silhouette, interactive 3D avatars, and a responsive glassmorphism design.
+                </p>
 
-        <div class="code-snippet-wrapper anim-reveal">
-            <h3 id="portfolio-code-title">Code Snippet (1st Semester, Fundamentals of Programming)</h3>
+                <div class="view-project-link">View Code on GitHub &rarr;</div>
+            </div>
+        </a>
+
+        <!-- PROJECT 3: Cactus Game -->
+        <a href="projects/cactus.html" class="portfolio-card anim-reveal">
+            <div class="portfolio-img-container">
+                <img src="img/kaktus_modellierung.png" alt="Cactus Game Character">
+            </div>
+            
+            <div class="portfolio-text">
+                <h3>Modelling and 3D Game</h3>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Blender</span>
+                    <span class="tech-tag">Unreal Engine 5</span>
+                    
+                </div>
+
+                <p>
+                    Designed and modeled a wheeled cactus pot in Blender. 
+                    Imported the character into Unreal Engine 5 and implemented a Blueprint-based game with point-collection mechanics and vehicle-style movement.
+                </p>
+
+                <div class="view-project-link">View Case Study &rarr;</div>
+            </div>
+        </a>
+
+        <!-- PROJECT 4: Pearl Earring -->
+        <a href="projects/pearl.html" class="portfolio-card anim-reveal">
+            <div class="portfolio-img-container">
+                <img src="img/pearl_modellierung.png" alt="Girl with Pearl Earring 3D">
+            </div>
+            
+            <div class="portfolio-text">
+                <h3>The Girl with the Pearl Earring</h3>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Blender</span>
+                    <span class="tech-tag">Sculpting</span>
+                    <span class="tech-tag">Lighting</span>
+                </div>
+
+                <p>
+                    A 3D reinterpretation of Vermeer's famous painting. 
+                    This project focused on translating the subtle facial expression and the specific lighting mood of the masterpiece into a three-dimensional form.
+                </p>
+
+                <div class="view-project-link">View Case Study &rarr;</div>
+            </div>
+        </a>
+
+        <!-- Code Snippet (Optional: kept separate at the bottom) -->
+        <div class="code-snippet-wrapper anim-reveal" style="margin-top: 40px;">
+            <h3 id="portfolio-code-title">Code Snippet (1st Semester)</h3>
             <pre><code class="language-java">
 class Crow {...
   void moveCrow() {
@@ -137,19 +218,12 @@ class Crow {...
     if ( crowX < -width/3-10 || crowX > 3000+10) {
       xVelocity *= -1;
     }
-    if ( crowY < -height/3-10 || crowY > height+10) {
-      yVelocity *= -1;
-    }
-    // erneuert Phase
-    subPhase += 1.0/frameRate;
-    if (subPhase > phaseLength) {
-      flyPhase = (flyPhase + 1) % crowImgs.size();
-      subPhase = 0;
-    }
+    // Phase update logic...
   }
 }
             </code></pre>
         </div>
+
     </section>
 
     <!-- SECTION 5: CONTACT -->

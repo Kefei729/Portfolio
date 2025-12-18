@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XR Implementation - Kefei Portfolio</title>
+    <!-- Linking to the project-specific stylesheet -->
+    <link rel="stylesheet" href="../project-style.css">
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="project-nav">
+        <a href="../index.html" style = "color: rgb(155, 170, 120)"class="back-link">
+            <!-- SVG Icon for back arrow -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            Back to Home
+        </a>
+        
+    </nav>
+
+    <!-- 1. Hero Image Section -->
+    <!-- Added 'cactus-hero-bg' for background color and 'contain-img' to fix cropping -->
+    <header class="project-hero XR-hero-bg">
+        <img src="../img/VR00.png" alt="AR App" class="contain-img">
+    </header>
+
+    <!-- 2. Header and Tags -->
+    <div class="header-content">
+        <h1>XR Implementation</h1>
+        <p class="project-tags">UI &nbsp; | &nbsp; Argumental Reality( Object Detection Lightship )&nbsp; | &nbsp; Virtual Reality &nbsp;</p>
+    </div>
+
+    <!-- 3. Overview Grid -->
+    <section class="overview-grid">
+        <div class="info-item">
+            <h3>Type</h3>
+            <p>Co-operated Project</p>
+        </div>
+        <div class="info-item">
+            <h3>Tools</h3>
+            <p>Unity, Unreal Engine 5</p>
+        </div>
+        <div class="info-item">
+            <h3>Date</h3>
+            <p>10/2025 - present</p>
+        </div>
+    </section>
+
+    <!-- 4. Main Content -->
+    <main class="case-study">
+        
+        <section class="content-section">
+            <h2>The Concept</h2>
+            <p>
+                Designed and modeled a wheeled cactus pot in Blender. The goal was to create a quirky, playable character for a game environment.
+                After modeling, I imported the character into Unreal Engine 5 to create an interactive experience.
+            </p>
+        </section>
+
+        <!-- New Side-by-Side Image Layout -->
+        <!-- Replacing the old 'full-width-image' with this grid -->
+    </main>
+    
+    <section class="smart-image-gallery">
+            <!-- Left Image -->
+            <div class="img-box">
+                <img src="../img/AR.png" alt="AR App Interface">
+                <p class="caption">AR App Development in Unity</p>
+            </div>
+            <!-- Right Image (Using placeholder or second sketch) -->
+            <div class="img-box">
+                <img src="../img/VR00.png" alt="VR Landscape">
+            <p class="caption">Interactive VR Landscape in Unreal Engine 5</p>
+            </div>
+        </div>
+    </section>
+    <section class="smart-image-gallery">
+            <!-- Left Image -->
+            <div class="img-box">
+                <img src="../img/VR01.png" alt="Composite of model">
+                <p class="caption">Interaction: Display of Illumination  </p>
+            </div>
+            <!-- Right Image (Using placeholder or second sketch) -->
+            <div class="img-box">
+                <img src="../img/VR02.png" alt="Composite of model">
+                <p class="caption">Interaction: Display of Poem Lines</p>
+        </div>
+    </section>
+
+    <main class="case-study">
+        <section class="content-section">
+            <h2>The Process</h2>
+            <p>
+                I started by modeling the base mesh using simple primitives in Blender.
+            </p>
+            <p>
+                In Unreal Engine 5, I implemented a Blueprint-based game logic which includes point-collection mechanics and animation controls for the wheeled movement.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="project-footer">
+        <p style="margin-bottom: 20px; color: rgb(155, 170, 120);">Next Project</p>
+         <a href="cactus.html" class="next-project-btn">Modeling and 3D Game →</a>
+        </footer>
+
+</body>
+</html>

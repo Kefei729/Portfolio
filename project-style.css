@@ -1,0 +1,256 @@
+/* ========================================================================== */
+/*    project-style.css - PROJECT DETAIL PAGE STYLES                          */
+/* ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Workbench&display=swap');
+
+:root {
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --accent-color: #3c5340; 
+    --light-gray: #f5f5f5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* --- Navigation --- */
+.project-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-link:hover { color: #888; }
+.back-link svg { width: 20px; height: 20px; }
+
+/* --- Hero Section --- */
+.project-hero {
+    margin-top: 80px; 
+    width: 90%;
+    max-width: 1200px;
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--light-gray);
+}
+
+/* FIX: Cactus specific background color */
+/* You should adjust this HEX code to match the exact grey in your cactus image */
+.cactus-hero-bg {
+    background-color: #b0b0b0; 
+}
+
+/* FIX: Contain image so it isn't cropped */
+.project-hero img.contain-img {
+    object-fit: contain !important; 
+    width: 100%;
+    height: 100%;
+    padding: 20px; 
+}
+
+.project-hero img, .project-hero video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Default behavior */
+}
+
+/* --- Text Content --- */
+.header-content {
+    max-width: 800px;
+    margin: 60px auto 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Workbench', serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.tags {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--light-gray);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    padding: 30px 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.info-item h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* --- Main Content Area --- */
+.case-study {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+}
+
+.content-section {
+    margin-bottom: 80px;
+}
+
+.content-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+/* --- Smart Adaptive Image Gallery --- */
+
+/* Outer Container: Handles layout, centering, and wrapping */
+.smart-image-gallery {
+    display: flex;           /* Enable Flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items to the top (prevents stretching if images have different heights) */
+    gap: 30px;               /* Gap between images */
+    flex-wrap: wrap;         /* Allow wrapping (essential for mobile responsiveness) */
+    width: 100%;
+    margin: 60px 0;          /* Vertical spacing around the section */
+    padding: 0 20px;         /* Side padding to prevent touching screen edges */
+}
+
+/* Image Box: Handles width adaptation */
+.img-box {
+    /* 
+       flex: 1 1 400px Breakdown:
+       - grow: 1   (Take up available space)
+       - shrink: 1 (Shrink if space is tight)
+       - basis: 400px (Ideal width is ~half screen. Forces wrapping on mobile)
+    */
+    flex: 1 1 400px; 
+    
+    /* Key Logic: Max Width Cap */
+    /* If 1 image: It grows to fill space but stops at 850px (looks like a centered single feature). */
+    /* If 2 images: They split the space (e.g., 500px each) and fit side-by-side naturally. */
+    max-width: 850px; 
+    
+    width: 100%;        /* Ensures it fills the container on very small screens */
+    text-align: center; /* Centers the caption text below */
+}
+
+/* Image Styling */
+.img-box img {
+    width: 100%;             /* Fills the .img-box width */
+    height: auto;            /* Maintains aspect ratio */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: block;          /* Removes default bottom whitespace of inline images */
+}
+
+/* Hover Effect: Slight Zoom */
+.img-box:hover img {
+    transform: scale(1.02);
+}
+
+/* Caption Styling */
+.caption {
+    margin-top: 12px;
+    color: #888;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+
+/* --- Footer Navigation --- */
+.project-footer {
+    border-top: 1px solid #eee;
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.next-project-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.next-project-btn:hover {
+    transform: translateY(-3px);
+    background: #38523e;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .project-hero { width: 100%; height: 40vh; margin-top: 60px; border-radius: 0; }
+    .overview-grid { grid-template-columns: 1fr; gap: 30px; }
+    
+    /* Stack images on mobile */
+    .image-pair {
+        grid-template-columns: 1fr;
+    }
+}
