@@ -73,6 +73,9 @@ body {
 .XR-hero-bg {
     background-color: #6c847152; 
 }
+.pearl-hero-bg {
+    background-color: #8f611289; 
+}
 
 /* FIX: Contain image so it isn't cropped */
 .project-hero img.contain-img {
