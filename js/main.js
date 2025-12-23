@@ -435,6 +435,76 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // ==========================================
+    // --- HTML2CANVAS PARTICLE EXPLOSION ---
+    // ==========================================
+    
+    // CHECK: Only run this heavy effect on Desktop (width > 768px)
+    if (window.innerWidth > 768) {
+        
+        gsap.utils.toArray(".gallery-item").forEach(item => {
+            imagesLoaded(item.querySelector('img'), () => {
+                html2canvas(item, { backgroundColor: null, useCORS: true }).then(canvas => {
+                    const width = canvas.width, height = canvas.height, ctx = canvas.getContext("2d"), imageData = ctx.getImageData(0, 0, width, height), particleCanvases = [], dataList = [];
+                    
+                    // Hide original image
+                    gsap.set(item.querySelector('img'), { opacity: 0 }); 
+                    gsap.set(item, { background: 'transparent', boxShadow: 'none', border: 'none' });
+                    
+                    // Create layers
+                    for (let i = 0; i < 60; i++) dataList.push(ctx.createImageData(width, height));
+                    for (let x = 0; x < width; x++) {
+                        for (let y = 0; y < height; y++) {
+                            for (let l = 0; l < 2; l++) {
+                                const index = (x + y * width) * 4;
+                                const dataIndex = Math.floor((60 * (Math.random() + (2 * x) / width)) / 3);
+                                if (dataIndex < dataList.length) {
+                                    for (let p = 0; p < 4; p++) dataList[dataIndex].data[index + p] = imageData.data[index + p];
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Add canvases to DOM
+                    dataList.forEach((data) => {
+                        let pCanvas = canvas.cloneNode();
+                        pCanvas.getContext("2d").putImageData(data, 0, 0);
+                        pCanvas.className = "capture-canvas";
+                        
+                        gsap.set(pCanvas, { 
+                            position: 'absolute', 
+                            top: 0, // Reset to 0 because .gallery-item is relative
+                            left: 0, 
+                            width: '100%', // Use % so it adapts if container resizes slightly
+                            height: '100%' 
+                        });
+                        item.appendChild(pCanvas); // Append INSIDE item, not parentElement
+                        particleCanvases.push(pCanvas);
+                    });
+                    
+                    // Animation
+                    const tl = gsap.timeline({ scrollTrigger: { trigger: item, scrub: 0.7, start: "top 80%", end: "bottom 50%" } });
+                    tl.from(particleCanvases, { x: () => gsap.utils.random(-350, 350), y: () => gsap.utils.random(-250, 250), rotation: () => gsap.utils.random(-90, 90), opacity: 0, stagger: { each: 0.02, from: "random" } });
+                });
+            });
+        });
+
+    } else {
+        // Optional: On Mobile, maybe add a simple fade-in instead?
+        // This keeps the site lightweight on phones.
+        gsap.utils.toArray(".gallery-item").forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+    }
     const clock = new THREE.Clock();
     function animate() {
       requestAnimationFrame(animate);

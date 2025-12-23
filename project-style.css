@@ -68,7 +68,10 @@ body {
 /* FIX: Cactus specific background color */
 /* You should adjust this HEX code to match the exact grey in your cactus image */
 .cactus-hero-bg {
-    background-color: #b0b0b0; 
+    background-color: #b0b59c; 
+}
+.XR-hero-bg {
+    background-color: #6c847152; 
 }
 
 /* FIX: Contain image so it isn't cropped */
