@@ -435,23 +435,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ==========================================
-    // --- HTML2CANVAS PARTICLE EXPLOSION ---
+   // ==========================================
+    // --- HTML2CANVAS PARTICLE EXPLOSION (FIXED) ---
     // ==========================================
     
-    // CHECK: Only run this heavy effect on Desktop (width > 768px)
+    const galleryItems = gsap.utils.toArray(".gallery-item");
+
+    // 1. Desktop: Execute particle explosion effect
     if (window.innerWidth > 768) {
         
-        gsap.utils.toArray(".gallery-item").forEach(item => {
-            imagesLoaded(item.querySelector('img'), () => {
+        galleryItems.forEach(item => {
+            const img = item.querySelector('img');
+            
+            // Ensure images are loaded before processing particles
+            imagesLoaded(img, () => {
                 html2canvas(item, { backgroundColor: null, useCORS: true }).then(canvas => {
-                    const width = canvas.width, height = canvas.height, ctx = canvas.getContext("2d"), imageData = ctx.getImageData(0, 0, width, height), particleCanvases = [], dataList = [];
-                    
-                    // Hide original image
-                    gsap.set(item.querySelector('img'), { opacity: 0 }); 
+                    const width = canvas.width, height = canvas.height;
+                    const ctx = canvas.getContext("2d");
+                    const imageData = ctx.getImageData(0, 0, width, height);
+                    const particleCanvases = [];
+                    const dataList = [];
+
+                    // Hide original image (only on desktop)
+                    gsap.set(img, { opacity: 0 }); 
                     gsap.set(item, { background: 'transparent', boxShadow: 'none', border: 'none' });
-                    
-                    // Create layers
+
+                    // Create particle layers (maintain original logic)
                     for (let i = 0; i < 60; i++) dataList.push(ctx.createImageData(width, height));
                     for (let x = 0; x < width; x++) {
                         for (let y = 0; y < height; y++) {
@@ -464,43 +473,50 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         }
                     }
-                    
+
                     // Add canvases to DOM
                     dataList.forEach((data) => {
                         let pCanvas = canvas.cloneNode();
                         pCanvas.getContext("2d").putImageData(data, 0, 0);
                         pCanvas.className = "capture-canvas";
-                        
-                        gsap.set(pCanvas, { 
-                            position: 'absolute', 
-                            top: 0, // Reset to 0 because .gallery-item is relative
-                            left: 0, 
-                            width: '100%', // Use % so it adapts if container resizes slightly
-                            height: '100%' 
-                        });
-                        item.appendChild(pCanvas); // Append INSIDE item, not parentElement
+                        gsap.set(pCanvas, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' });
+                        item.appendChild(pCanvas);
                         particleCanvases.push(pCanvas);
                     });
-                    
-                    // Animation
+
+                    // Explosion/Assembly animation
                     const tl = gsap.timeline({ scrollTrigger: { trigger: item, scrub: 0.7, start: "top 80%", end: "bottom 50%" } });
-                    tl.from(particleCanvases, { x: () => gsap.utils.random(-350, 350), y: () => gsap.utils.random(-250, 250), rotation: () => gsap.utils.random(-90, 90), opacity: 0, stagger: { each: 0.02, from: "random" } });
+                    tl.from(particleCanvases, { 
+                        x: () => gsap.utils.random(-350, 350), 
+                        y: () => gsap.utils.random(-250, 250), 
+                        rotation: () => gsap.utils.random(-90, 90), 
+                        opacity: 0, 
+                        stagger: { each: 0.02, from: "random" } 
+                    });
                 });
             });
         });
 
     } else {
-        // Optional: On Mobile, maybe add a simple fade-in instead?
-        // This keeps the site lightweight on phones.
-        gsap.utils.toArray(".gallery-item").forEach(item => {
+        // 2. Mobile: Disable particles, use simple fade-in
+        // Key: No need to hide original image here, just a simple ScrollTrigger animation
+        
+        galleryItems.forEach(item => {
+            const img = item.querySelector('img');
+            
+            // Ensure CSS hasn't hidden the image, force visibility via JS (just in case)
+            gsap.set(img, { opacity: 1 });
+            
+            // Simple float-up and fade-in animation
             gsap.from(item, {
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 85%"
+                    start: "top 90%", // Trigger when top of image hits 90% of viewport height
+                    toggleActions: "play none none reverse"
                 },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
+                y: 50,          // Slight upward float
+                opacity: 0,     // Fade from transparent to opaque
+                duration: 0.6,
                 ease: "power2.out"
             });
         });
