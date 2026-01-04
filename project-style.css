@@ -260,3 +260,32 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
+
+.feature-list {
+    list-style: none; 
+    padding: 0;
+    margin-top: 20px;
+}
+
+.feature-list li {
+    margin-bottom: 20px; 
+    position: relative;
+    padding-left: 20px; 
+    line-height: 1.6;
+    color: #444; 
+}
+
+.feature-list li::before {
+    content: "•";
+    color: #3c5340; 
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.feature-list li strong {
+    color: #2a3d2e; 
+    font-weight: 700;
+    margin-right: 5px; 
+}

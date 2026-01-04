@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // =======================================
     // --- TRANSLATIONS & LANGUAGE SWITCH ---
     // =======================================
-    const translations = {
+   /* const translations = {
         de: {
             // About
             'about-title': 'Über Mich',
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (langSwitcher) {
         langSwitcher.addEventListener('click', switchLanguage);
     }
-
+*/
     // ===============================================
     // --- DYNAMIC PARTICLE SILHOUETTE SYSTEM ---
     // ===============================================

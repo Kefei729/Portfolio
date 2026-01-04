@@ -93,56 +93,76 @@ main.content { position: relative; z-index: 3;}
 .top-nav.nav-open .burger-menu span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 .nav-icon { font-size: 1.5rem; font-weight: bold; text-decoration: none; text-align: center; padding: 5px; background: linear-gradient(45deg, #588157, var(--text-dark-green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
+/* ======================================= */
+/*    DESKTOP NAVIGATION (Centered Capsule) */
+/* ======================================= */
+
 @media (min-width: 768px) {
+    /* Hide the burger menu button on desktop */
     .burger-menu { 
         display: none; 
     }
 
+    /* Main Navigation Container */
     .top-nav {
-        left: 40px; 
-        right: 40px; 
-        width: auto; 
-        padding: 5px 20px; 
-        backdrop-filter: blur(10px);
-        border-radius: 50px; 
-      
+        /* Positioning: Center horizontally */
+        left: 50%; 
+        transform: translateX(-50%); 
+        
+        /* Sizing and Layout */
+        width: auto;              /* Fit content width */
+        min-width: 350px;         /* Minimum width to look balanced */
+        padding: 5px 20px;        /* Inner spacing */
+        
+        /* Flexbox for centering children */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* Visual Style: Glassmorphism Capsule */
         background-color: rgba(240, 243, 233, 0.4); 
+        backdrop-filter: blur(10px);
+        border-radius: 50px;      /* Pill shape */
     }
 
+    /* Link Container (Reset mobile styles) */
     .nav-links { 
         display: flex; 
         flex-direction: row; 
         align-items: center; 
+        gap: 10px;                /* Space between links */
+        
+        /* Reset positioning and effects from mobile view */
         position: static; 
-        gap: 10px; 
         background: none; 
         backdrop-filter: none; 
         box-shadow: none; 
+        border: none;
         padding: 0; 
         opacity: 1; 
         transform: none; 
     }
 
+    /* Individual Link Styling */
     .nav-icon { 
         display: flex; 
         align-items: center; 
         justify-content: center; 
+        
+        /* Size and Spacing */
         width: auto; 
         height: auto; 
         min-width: 40px; 
         padding: 6px 12px;
-        border-radius: 20px; 
+        
+        /* Text and Shape */
         font-size: 1rem; 
+        border-radius: 20px; 
+        white-space: nowrap;      /* Prevent text wrapping */
         transition: all 0.3s ease; 
-        white-space: nowrap; 
     }
 
-    .nav-links .nav-icon:last-child {
-        margin-left: auto; 
-        border: 1.5px solid var(--text-dark-green); 
-        padding: 4px 10px;
-    }
-
+    /* Hover Interaction */
     .nav-icon:hover { 
         transform: scale(1.05); 
     }
