@@ -79,13 +79,11 @@ main.content { position: relative; z-index: 3;}
 #vrm-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 4; pointer-events: none;  display: none; }
 .site-frame { position: fixed; top: 5px; left: 5px; right: 5px; bottom: 5px; border: 8px solid var(--frame-color); border-radius: 20px; z-index: 5; pointer-events: none; }
 
-
-/* ======================================= */
-/*    RESPONSIVE TOP NAVIGATION STYLES     */
-/* ======================================= */
-
+/* ======================================= /
+/    RESPONSIVE TOP NAVIGATION STYLES     /
+/ ======================================= */
 .top-nav { position: fixed; top: 20px; left: 20px; z-index: 100; }
-.nav-links { display: none; position: absolute; top: 60px; left: 0; background-color: rgba(240, 243, 233, 0.7); backdrop-filter: blur(10px); border-radius: 15px; box-shadow: 0 5px 25px var(--shadow-color); border: 1px solid rgba(255, 255, 255, 0.3); padding: 15px 10px; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.nav-links { display: none; position: absolute; top: 60px; left: 0; background-color: rgba(240, 243, 233, 0.7); backdrop-filter: blur(10px); border-radius: 15px; box-shadow: 0 5px 25px var(--shadow-color); padding: 15px 10px; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
 .nav-links::-webkit-scrollbar { width: 0px; background: transparent; }
 .top-nav.nav-open .nav-links { display: flex; flex-direction: column; gap: 15px; opacity: 1; transform: translateY(0); }
 .burger-menu { width: 48px; height: 48px; background-color: rgba(240, 243, 233, 0.5); backdrop-filter: blur(8px); border-radius: 50%; border: none; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 12px; }
@@ -96,13 +94,59 @@ main.content { position: relative; z-index: 3;}
 .nav-icon { font-size: 1.5rem; font-weight: bold; text-decoration: none; text-align: center; padding: 5px; background: linear-gradient(45deg, #588157, var(--text-dark-green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 @media (min-width: 768px) {
-    .burger-menu { display: none; }
-    .top-nav { left: 15%; transform: translateX(-50%);  padding: 10px; }
-    .nav-links { display: flex; flex-direction: row; position: static; gap: 15px; background: none; backdrop-filter: none; box-shadow: none; padding: 0; opacity: 1; transform: none; }
-    .nav-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; transition: transform 0.3s ease; padding: 0; }
-    .nav-icon:hover { transform: scale(1.15); }
-}
+    .burger-menu { 
+        display: none; 
+    }
 
+    .top-nav {
+        left: 40px; 
+        right: 40px; 
+        width: auto; 
+        padding: 5px 20px; 
+        backdrop-filter: blur(10px);
+        border-radius: 50px; 
+      
+        background-color: rgba(240, 243, 233, 0.4); 
+    }
+
+    .nav-links { 
+        display: flex; 
+        flex-direction: row; 
+        align-items: center; 
+        position: static; 
+        gap: 10px; 
+        background: none; 
+        backdrop-filter: none; 
+        box-shadow: none; 
+        padding: 0; 
+        opacity: 1; 
+        transform: none; 
+    }
+
+    .nav-icon { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        width: auto; 
+        height: auto; 
+        min-width: 40px; 
+        padding: 6px 12px;
+        border-radius: 20px; 
+        font-size: 1rem; 
+        transition: all 0.3s ease; 
+        white-space: nowrap; 
+    }
+
+    .nav-links .nav-icon:last-child {
+        margin-left: auto; 
+        border: 1.5px solid var(--text-dark-green); 
+        padding: 4px 10px;
+    }
+
+    .nav-icon:hover { 
+        transform: scale(1.05); 
+    }
+}
 /* ================================== */
 /*   MAIN CONTENT STYLES              */
 /* ================================== */
