@@ -1,7 +1,4 @@
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { VRMLoaderPlugin } from "@pixiv/three-vrm";
 import { createBloomTextScene } from "./szene1.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -353,24 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const bloomTextCanvas = document.getElementById("bloom-text-canvas");
     const bloomTextRenderer = new THREE.WebGLRenderer({ canvas: bloomTextCanvas, alpha: true, antialias: true });
     const bloomTextScene = createBloomTextScene();
-    const vrmCanvas = document.getElementById("vrm-canvas");
-    const vrmPlaceholder = document.getElementById("vrm-placeholder");
-    const vrmRenderer = new THREE.WebGLRenderer({ canvas: vrmCanvas, alpha: true, antialias: true });
-    const vrmScene = new THREE.Scene();
-    const vrmCamera = new THREE.PerspectiveCamera(30, 1, 0.1, 20);
-    vrmCamera.position.set(0.0, 0.8, 3.5);
-    const controls = new OrbitControls(vrmCamera, vrmPlaceholder);
-    controls.target.set(0.0, 0.8, 0.0);
-    vrmScene.add(new THREE.AmbientLight(0xffffff, 1.5));
-    const light = new THREE.DirectionalLight(0xffffff, Math.PI);
-    light.position.set(1.0, 1.0, 1.0).normalize();
-    vrmScene.add(light);
-    let currentVrm;
-    new GLTFLoader().register(p => new VRMLoaderPlugin(p)).load("./Avatar_Kefei.vrm", (gltf) => {
-        currentVrm = gltf.userData.vrm;
-        currentVrm.scene.rotation.y = Math.PI;
-        vrmScene.add(currentVrm.scene);
-    });
 
     const animatedScrollElements = document.querySelectorAll(".anim-reveal");
     function handleScrollAnimations() {
@@ -524,12 +503,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const clock = new THREE.Clock();
     function animate() {
       requestAnimationFrame(animate);
-      const delta = clock.getDelta();
+      clock.getDelta();
       bloomTextScene.update();
       bloomTextRenderer.render(bloomTextScene.scene, bloomTextScene.camera);
-      if (currentVrm) currentVrm.update(delta);
-      controls.update();
-      vrmRenderer.render(vrmScene, vrmCamera);
     }
 
     function handleResizeAndScroll() {
@@ -539,12 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
         bloomTextScene.camera.aspect = width / height;
         bloomTextScene.camera.updateProjectionMatrix();
         if (bloomTextScene.handleScroll) bloomTextScene.handleScroll();
-        const rect = vrmPlaceholder.getBoundingClientRect();
-        vrmRenderer.setSize(width, height);
-        vrmRenderer.setPixelRatio(window.devicePixelRatio);
-        vrmRenderer.setViewport(rect.left, height - rect.bottom, rect.width, rect.height);
-        vrmCamera.aspect = rect.width / rect.height;
-        vrmCamera.updateProjectionMatrix();
         handleScrollAnimations();
     }
     

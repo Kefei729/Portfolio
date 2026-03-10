@@ -76,7 +76,6 @@ body {
 }
 #bloom-text-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2; pointer-events: none; }
 main.content { position: relative; z-index: 3;}
-#vrm-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 4; pointer-events: none;  display: none; }
 .site-frame { position: fixed; top: 5px; left: 5px; right: 5px; bottom: 5px; border: 8px solid var(--frame-color); border-radius: 20px; z-index: 5; pointer-events: none; }
 
 /* ======================================= /
@@ -177,8 +176,7 @@ h3 { font-size: 1.8rem; margin-bottom: 20px; }
 header { height: 100vh; margin-bottom: 100px; }
 #about-section, .podcast-container { background-color: rgba(215, 225, 191, 0.6); backdrop-filter: blur(6px); border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px var(--shadow-color); }
 #about-section .about-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; text-align: left; }
-.about-image { flex: 0 0 250px; height: 250px; border-radius: 50%; position: relative; overflow: hidden;background-color: rgba(255,255,255,0.2); pointer-events: auto; cursor: grab; }
-.about-image:active { cursor: grabbing; }
+.about-image { flex: 0 0 250px; height: 250px; border-radius: 50%; position: relative; overflow: hidden; background-color: rgba(255,255,255,0.2); }
 
 .static-avatar-img {
     width: 100%;

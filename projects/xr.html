@@ -3,126 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XR Implementation - Kefei Portfolio</title>
-    <!-- Linking to the project-specific stylesheet -->
+    <title>Geh mit Hoelderlin: VR Poetry Experience - Kefei Portfolio</title>
     <link rel="stylesheet" href="../project-style.css">
 </head>
 <body>
 
-    <!-- Top Navigation -->
     <nav class="project-nav">
-        <a href="../index.html" style = "color: rgb(155, 170, 120)"class="back-link">
-            <!-- SVG Icon for back arrow -->
+        <a href="../index.html" style="color: rgb(155, 170, 120)" class="back-link">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
             Back to Home
         </a>
-        
     </nav>
 
-    <!-- 1. Hero Image Section -->
-    <!-- Added 'cactus-hero-bg' for background color and 'contain-img' to fix cropping -->
     <header class="project-hero XR-hero-bg">
-        <img src="../img/VR00.png" alt="AR App" class="contain-img">
+        <img src="../img/VR00.png" alt="VR forest environment" class="contain-img">
     </header>
 
-    <!-- 2. Header and Tags -->
-   <div class="header-content">
-    <h1>XR Implementation</h1>
-    <p class="project-tags">UI / UX &nbsp; | &nbsp; Augmented Reality (Lightship ARDK) &nbsp; | &nbsp; Virtual Reality</p>
-</div>
+    <div class="header-content">
+        <h1>Geh mit Hoelderlin: VR Poetry Experience</h1>
+        <p class="project-tags">VR Experience &nbsp; | &nbsp; Unreal Engine 5 &nbsp; | &nbsp; Interactive Poetry &nbsp; | &nbsp; Meta Quest 3</p>
+    </div>
 
-    <!-- 3. Overview Grid -->
     <section class="overview-grid">
         <div class="info-item">
             <h3>Type</h3>
-            <p>Collaborative Project</p>
+            <p>Course Project</p>
         </div>
         <div class="info-item">
             <h3>Tools</h3>
-            <p>Unity, Unreal Engine 5</p>
+            <p>Unreal Engine 5, Meta Quest 3, Blueprint Interfaces, Fab Assets</p>
         </div>
         <div class="info-item">
             <h3>Date</h3>
-            <p>10/2025 - present</p>
-        </div>
-    </section>
-
-    <!-- 4. Main Content -->
-    <main class="case-study">
-<section class="content-section">
-    <h2>Overview</h2>
-    <p>
-        A collaborative XR project bridging literature and technology. This project combines an <strong>Augmented Reality (AR)</strong> mobile app with a <strong>Virtual Reality (VR)</strong> experience to interpret Friedrich Hölderlin's poetry.
-        The system leverages Unity for real-world object detection and Unreal Engine 5 for an immersive, atmospheric virtual landscape, offering users two distinct ways to engage with the text.
-    </p>
-</section>
-
-        <!-- New Side-by-Side Image Layout -->
-        <!-- Replacing the old 'full-width-image' with this grid -->
-    </main>
-    
-    <section class="smart-image-gallery">
-            <!-- Left Image -->
-            <div class="img-box">
-                <img src="../img/AR.png" alt="AR App Interface">
-                <p class="caption">AR App Development in Unity</p>
-            </div>
-            <!-- Right Image (Using placeholder or second sketch) -->
-            <div class="img-box">
-                <img src="../img/VR00.png" alt="VR Landscape">
-            <p class="caption">Interactive VR Landscape in Unreal Engine 5</p>
-            
-        </div>
-    </section>
-    <section class="smart-image-gallery">
-            <!-- Left Image -->
-            <div class="img-box">
-                <img src="../img/VR01.png" alt="Composite of model">
-                <p class="caption">Interaction: Display of Illumination  </p>
-            </div>
-            <!-- Right Image (Using placeholder or second sketch) -->
-            <div class="img-box">
-                <img src="../img/VR02.png" alt="Composite of model">
-                <p class="caption">Interaction: Display of Poem Lines</p>
+            <p>Winter Semester 2025/26</p>
         </div>
     </section>
 
     <main class="case-study">
-       <section class="content-section">
-    <h2>Development Process</h2>
-    <ul class="feature-list">
-        <li>
-            <strong>UI/UX Prototyping & Frontend:</strong> 
-            The user interface was initially prototyped in Figma to define the interaction flow, followed by a complete frontend implementation in Unity.
-        </li>
-        <li>
-            <strong>AR Object Detection Pipeline:</strong> 
-            Utilizing the <strong>Niantic Lightship SDK</strong>, the detection functionality was established by recording and processing custom playback datasets to configure and test the model's accuracy on mobile devices.
-        </li>
-        <li>
-            <strong>User Onboarding Design:</strong> 
-            To address scanning complexities, an initial onboarding tutorial was designed and integrated, guiding users through the correct object scanning process upon startup.
-        </li>
-        <li>
-            <strong>Poetic Visualization:</strong> 
-             Built in Unreal Engine 5, the VR environment serves as a visual interpretation of the poem. 
-            Volumetric lighting and spatial audio define the atmosphere, providing users with a sensory context to better comprehend the literary work.
-        </li>
-        <li>
-            <strong>VR Interaction Logic:</strong> 
-            Motion controller mechanics were programmed to allow users to trigger poetic lines and manipulate environmental lighting dynamically, transforming passive reading into active exploration.
-        </li>
-    </ul>
-</section>
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>
+                This project reinterprets the poetry of Friedrich Hoelderlin as an interactive VR experience.
+                Developed in Unreal Engine 5, it places visitors inside a stylized forest landscape where poetry can be explored through movement, sound, light, and interaction.
+                The aim was to make Hoelderlin's imagery more accessible by translating selected poetic lines into an immersive audiovisual environment.
+            </p>
+            <p>
+                Created within the interdisciplinary university module "Von Hoelderlin bis Nibelungen: VR, AR und AI-Experimente," the project began in a broader XR context, including early AR-related ideas.
+                The final realized and exhibited outcome, however, focused on the VR experience presented on Meta Quest 3.
+            </p>
+        </section>
     </main>
 
-    <!-- Footer Navigation -->
+    <section class="smart-image-gallery">
+        <div class="img-box">
+            <img src="../img/VR00.png" alt="Project hero placeholder">
+            <p class="caption">Replace with hero image or key scene overview</p>
+        </div>
+        <div class="img-box">
+            <img src="../img/AR.png" alt="Concept placeholder">
+            <p class="caption">Replace with concept sketch or early project context image</p>
+        </div>
+    </section>
+
+    <main class="case-study">
+        <section class="content-section">
+            <h2>My Contribution</h2>
+            <p>
+                I designed and implemented the VR environment in Unreal Engine 5, including terrain building, scene composition, object placement, interaction logic, and usability adjustments for VR.
+                I also developed the interaction flow that connects virtual objects with poetic lines and their corresponding recitation audio, and tested the experience directly on Meta Quest 3.
+            </p>
+        </section>
+    </main>
+
+    <section class="smart-image-gallery">
+        <div class="img-box">
+            <img src="../img/VR01.png" alt="Development process placeholder">
+            <p class="caption">Replace with Unreal scene-building or editor screenshot</p>
+        </div>
+        <div class="img-box">
+            <img src="../img/VR02.png" alt="Interaction placeholder">
+            <p class="caption">Replace with interaction or poem display screenshot</p>
+        </div>
+    </section>
+
+    <main class="case-study">
+        <section class="content-section">
+            <h2>Process and Challenges</h2>
+            <ul class="feature-list">
+                <li>
+                    <strong>Environment Design:</strong>
+                    The visual world was built around a stylized forest environment that matched the poetic atmosphere I wanted to create. I sculpted the landscape, arranged natural assets, and placed interactive elements such as flowers, mushrooms, and stones throughout the scene.
+                </li>
+                <li>
+                    <strong>Poetry and Audio Interaction:</strong>
+                    Each interactive object was linked to a specific line of poetry and its corresponding recitation audio. When visitors approached or activated an object, a visual highlight was triggered, the poetic line appeared, and the spoken recitation became part of the experience.
+                </li>
+                <li>
+                    <strong>VR Adaptation:</strong>
+                    After an early desktop prototype, I adapted the interaction design for VR and replaced the original click-based logic with a distance-based shooting interaction, allowing visitors to activate objects more precisely in the headset.
+                </li>
+                <li>
+                    <strong>Readability and Immersion:</strong>
+                    To keep the poem text readable in VR, I reworked the widget presentation with a Stereo Layer workflow. I also refined lighting, post-processing, and spatial audio so that the text remained legible without losing the atmosphere of the scene.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <section class="smart-image-gallery">
+        <div class="img-box">
+            <img src="../img/VR01.png" alt="UX refinement placeholder">
+            <p class="caption">Replace with UX, debug, or readability improvement screenshot</p>
+        </div>
+        <div class="img-box">
+            <img src="../img/VR02.png" alt="Exhibition placeholder">
+            <p class="caption">Replace with exhibition photo or Meta Quest 3 testing image</p>
+        </div>
+    </section>
+
+    <main class="case-study">
+        <section class="content-section">
+            <h2>Outcome</h2>
+            <p>
+                The final result is a VR poetry experience that transforms literary text into an explorable spatial environment.
+                Instead of encountering Hoelderlin only on the page, visitors experience selected lines through movement, sound, light, and interaction in virtual space.
+                The project was presented during the Hochschultage at HfK Bremen.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Video</h2>
+            <div class="video-embed">
+                <iframe
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                    title="Geh mit Hoelderlin VR walkthrough"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <p class="caption">Replace <code>YOUR_VIDEO_ID</code> with your YouTube video ID.</p>
+        </section>
+    </main>
+
     <footer class="project-footer">
         <p style="margin-bottom: 20px; color: rgb(155, 170, 120);">Next Project</p>
-         <a href="cactus.html" class="next-project-btn">Modeling and 3D Game →</a>
-        </footer>
+        <a href="me.html" class="next-project-btn">Media Engineering: UE5 Team Game →</a>
+    </footer>
 
 </body>
 </html>
