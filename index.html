@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,16 +16,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-    
+
     <script type="importmap">
       {
         "imports": {
-          "three": "./lib/three.module.js",
-          "three/addons/": "./lib/addons/",
-          "@pixiv/three-vrm": "./lib/three-vrm.module.js"
+          "three": "./lib/three.module.js"
         }
       }
     </script>
+    
   </head>
   <body>
       <!-- The hidden image for the particle silhouette -->
@@ -33,16 +32,16 @@
 
       <!-- Responsive Navigation Bar -->
       <nav class="top-nav" id="top-navigation">
-        <button class="burger-menu" id="burger-button" aria-label="Menü öffnen/schließen">
+        <button class="burger-menu" id="burger-button" aria-label="Open or close menu">
           <span></span>
           <span></span>
           <span></span>
         </button>
         <div class="nav-links">
-          <a href="#about-section" class="nav-icon" title="Über Mich">Intro</a>
-          <a href="#gallery-section" class="nav-icon" title="Galerie">Podcast</a>
-          <a href="#portfolio-section" class="nav-icon" title="Portfolio">Project</a>
-          <a href="#contact-section" class="nav-icon" title="Kontakt">Contact</a>
+          <a href="#about-section" class="nav-icon" title="About Me">Intro</a>
+          <a href="#portfolio-section" class="nav-icon" title="Portfolio">Projects</a>
+          <a href="#podcast-section" class="nav-icon" title="Podcast">Podcast</a>
+          <a href="#contact-section" class="nav-icon" title="Contact">Contact</a>
         </div>
         
       </nav>
@@ -51,7 +50,6 @@
       <div class="site-frame"></div>
       <canvas id="particle-canvas"></canvas>
       <canvas id="bloom-text-canvas"></canvas>
-      <canvas id="vrm-canvas"></canvas>
 
       <!-- Main Scrollable Content -->
       <main class="content">
@@ -66,68 +64,33 @@
             </div>
             <div class="about-text">
                 <h2 id="about-title">About Me</h2>
-                <p id="about-p1">Hello! I'm Kefei. I am a Digital Media student at the University of Bremen with a passion for the intersection of code and design.
-                <p id="about-p2">Rather than limiting myself to a single discipline, I enjoy exploring diverse mediums, ranging from 3D modeling and XR development to interactive web design and audio storytelling. My goal is to combine technical logic with artistic expression to bring creative ideas to life.</p>
+                <p id="about-p1">I'm Kefei, a Digital Media student at the University of Bremen focused on interactive web, 3D, and XR experiences.</p>
+                <p id="about-p2">My work combines technical experimentation with visual storytelling across Unreal Engine, Blender, and front-end development.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: PODCAST -->
-    <section id="podcast-section">
-        <div class="podcast-container anim-reveal">
-            <div class="podcast-icon">
-                <img src="img/1.png" alt="Lemon Season Podcast Cover">
-            </div>
-            <div class="podcast-text">
-                <h3 id="podcast-title">Podcast: Lemon Season</h3>
-                <p id="podcast-p">Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.</p>
-                <a href="https://podcasts.apple.com/de/podcast/%E6%9F%A0%E6%AA%AC%E5%AD%A3%E8%8A%82/id1760920364" class="podcast-button" target="_blank" id="podcast-button-text">
-                    Listen on Apple Podcasts
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: GALLERY -->
-    <section id="gallery-section">
-        <div class="gallery-container">
-            <div class="gallery-item"><img src="img/1.png" alt="Modell 1" /><span>Cover</span></div>
-            <div class="gallery-item"><img src="img/2.png" alt="Modell 2" /><span>Episode 17</span></div>
-            <div class="gallery-item"><img src="img/3.png" alt="Modell 3" /><span>Episode 21</span></div>
-            <div class="gallery-item"><img src="img/4.png" alt="Modell 4" /><span>Episode 15</span></div>
-            <div class="gallery-item"><img src="img/7.png" alt="Modell 5" /><span>Episode 20</span></div>
-            <div class="gallery-item"><img src="img/6.png" alt="Modell 6" /><span>Episode 7</span></div>
-            <div class="gallery-item"><img src="img/5.png" alt="Modell 7" /><span>Episode 9</span></div>
-            <div class="gallery-item"><img src="img/8.jpg" alt="Modell 8" /><span>Episode 19</span></div>
-            <div class="gallery-item"><img src="img/9.jpg" alt="Modell 9" /><span>Episode 2</span></div>
-        </div>
-    </section>
-
-   <!-- SECTION 4: PORTFOLIO -->
+   <!-- SECTION 2: PORTFOLIO -->
     <section id="portfolio-section">
         
-        <!-- PROJECT 1: AR Poetry (Newest) -->
-        <!-- Note: Replace href="#" with your detailed page link if you have one, e.g., projects/ar-poetry.html -->
         <a href="projects/xr.html" class="portfolio-card anim-reveal">
-            <!-- Left: Image/Video Container -->
             <div class="portfolio-img-container">
-                <img src="img/XR.png" alt="AR Poetry App Interface">
+                <img src="img/XR.png" alt="Geh mit Hoelderlin VR Poetry Experience">
             </div>
             
-            <!-- Right: Text Content -->
             <div class="portfolio-text">
-                <h3>AR Poetry App + VR Interaction</h3>
+                <h3>Geh mit Hoelderlin: VR Poetry Experience</h3>
                 
                 <div class="tech-tags">
-                    <span class="tech-tag">Unity</span>
-                    <span class="tech-tag">Lightship SDK</span>
                     <span class="tech-tag">Unreal Engine 5</span>
-                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">Meta Quest 3</span>
+                    <span class="tech-tag">Blueprint Interfaces</span>
+                    <span class="tech-tag">Interactive Poetry</span>
                 </div>
 
                 <p>
-                    Co-developed an AR app using Lightship SDK to retrieve poetry based on real-world object detection. 
-                    I also created an interactive VR landscape in Unreal 5 .
+                    Developed an interactive VR poetry experience in Unreal Engine 5 for Meta Quest 3.
+                    The project translates selected lines by Friedrich Hoelderlin into a stylized forest landscape through spatial interaction, sound, and visual atmosphere.
                 </p>
                 
                 <div class="view-project-link">View Project &rarr;</div>
@@ -138,7 +101,6 @@
         <!-- Note: This links to the current site, maybe link to GitHub repo? -->
         <a href="https://github.com/Kefei729/Portfolio" target="_blank" class="portfolio-card anim-reveal">
             <div class="portfolio-img-container">
-                <!-- Using the girl illustration or a screenshot of the site -->
                 <img src="img/portfolio.png" alt="Portfolio Website Screenshot">
             </div>
             
@@ -149,14 +111,39 @@
                     <span class="tech-tag">Three.js</span>
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">HTML / CSS</span>
+                    <span class="tech-tag">GSAP</span>
                 </div>
 
                 <p>
-                    Designed and developed this personal portfolio to showcase projects and skills. 
-                    Featured a custom Three.js particle system where leaves form a silhouette, interactive 3D avatars, and a responsive glassmorphism design.
+                    Designed and developed this portfolio as a custom front-end project rather than a template-based site.
+                    It combines motion, layered visuals, and interactive effects to present my work in a way that reflects my interest in code, design, and digital atmosphere.
                 </p>
 
                 <div class="view-project-link">View Code on GitHub &rarr;</div>
+            </div>
+        </a>
+
+        <a href="projects/me.html" class="portfolio-card anim-reveal">
+            <div class="portfolio-img-container">
+                <img src="img/game_preview.png" alt="Bella in Space UE5 Team Game">
+            </div>
+            
+            <div class="portfolio-text">
+                <h3>Bella in Space</h3>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Unreal Engine 5</span>
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">GUI Blueprint</span>
+                    <span class="tech-tag">Team Project</span>
+                </div>
+
+                <p>
+                    A third-semester Media Engineering team project developed in Unreal Engine 5.
+                    My contribution focused on parts of the C++ gameplay programming and the GUI Blueprint implementation.
+                </p>
+
+                <div class="view-project-link">View Project &rarr;</div>
             </div>
         </a>
 
@@ -167,17 +154,18 @@
             </div>
             
             <div class="portfolio-text">
-                <h3>Modelling and 3D Game</h3>
+                <h3>Wheeled Cactus: Modeling and 3D Game</h3>
                 
                 <div class="tech-tags">
                     <span class="tech-tag">Blender</span>
                     <span class="tech-tag">Unreal Engine 5</span>
-                    
+                    <span class="tech-tag">Compositing</span>
+                    <span class="tech-tag">Blueprints</span>
                 </div>
 
                 <p>
-                    Designed and modeled a wheeled cactus pot in Blender. 
-                    Imported the character into Unreal Engine 5 and implemented a Blueprint-based game with point-collection mechanics and vehicle-style movement.
+                    A hybrid project spanning 3D modeling, animation, compositing, and game development.
+                    The wheeled cactus character was built in Blender, integrated into live-action footage, and later developed into a playable Unreal Engine prototype.
                 </p>
 
                 <div class="view-project-link">View Project &rarr;</div>
@@ -195,19 +183,48 @@
                 
                 <div class="tech-tags">
                     <span class="tech-tag">Blender</span>
+                    <span class="tech-tag">3D Study</span>
                 </div>
 
                 <p>
-                    A 3D reinterpretation of Vermeer's famous painting. 
-                    This project focused on translating the subtle facial expression and the specific lighting mood of the masterpiece into a three-dimensional form.
+                    An early Blender study based on Vermeer's painting, created to practice blocking, proportion, and the translation of a two-dimensional reference into three-dimensional form.
                 </p>
 
                 <div class="view-project-link">View Case Study &rarr;</div>
             </div>
         </a>
 
-        
+    </section>
 
+    <!-- SECTION 3: PODCAST -->
+    <section id="podcast-section">
+        <div class="podcast-container anim-reveal">
+            <div class="podcast-icon">
+                <img src="img/1.png" alt="Lemon Season Podcast Cover">
+            </div>
+            <div class="podcast-text">
+                <h3 id="podcast-title">Podcast: Lemon Season</h3>
+                <p id="podcast-p">Together with a friend, I produce "Lemon Season," a Chinese podcast where we talk openly and honestly about the challenges and joys of growing up. We share personal stories, give tips, and create a space for authentic conversations.</p>
+                <a href="https://podcasts.apple.com/de/podcast/%E6%9F%A0%E6%AA%AC%E5%AD%A3%E8%8A%82/id1760920364" class="podcast-button" target="_blank" id="podcast-button-text">
+                    Listen on Apple Podcasts
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: GALLERY -->
+    <section id="gallery-section">
+        <div class="gallery-container">
+            <div class="gallery-item"><img src="img/1.png" alt="Modell 1" /><span>Cover</span></div>
+            <div class="gallery-item"><img src="img/2.png" alt="Modell 2" /><span>Episode 17</span></div>
+            <div class="gallery-item"><img src="img/3.png" alt="Modell 3" /><span>Episode 21</span></div>
+            <div class="gallery-item"><img src="img/4.png" alt="Modell 4" /><span>Episode 15</span></div>
+            <div class="gallery-item"><img src="img/7.png" alt="Modell 5" /><span>Episode 20</span></div>
+            <div class="gallery-item"><img src="img/6.png" alt="Modell 6" /><span>Episode 7</span></div>
+            <div class="gallery-item"><img src="img/5.png" alt="Modell 7" /><span>Episode 9</span></div>
+            <div class="gallery-item"><img src="img/8.jpg" alt="Modell 8" /><span>Episode 19</span></div>
+            <div class="gallery-item"><img src="img/9.jpg" alt="Modell 9" /><span>Episode 2</span></div>
+        </div>
     </section>
 
     <!-- SECTION 5: CONTACT -->

@@ -224,6 +224,19 @@ h1 {
     font-style: italic;
 }
 
+.video-embed {
+    width: 100%;
+}
+
+.video-embed iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    border: 0;
+    background: #eef2e6;
+    display: block;
+}
+
 
 /* --- Footer Navigation --- */
 .project-footer {
