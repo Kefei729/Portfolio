@@ -76,7 +76,9 @@ body {
 .pearl-hero-bg {
     background-color: #8f611289; 
 }
-
+.me-hero-bg {
+    background-color: #c1cbe8; 
+}
 /* FIX: Contain image so it isn't cropped */
 .project-hero img.contain-img {
     object-fit: contain !important; 
